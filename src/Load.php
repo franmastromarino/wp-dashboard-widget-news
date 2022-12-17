@@ -7,7 +7,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 class Load {
 
 	protected static $instance;
-	private $utm_source = 'utm_source=quadlayers&utm_medium=dashboard&utm_campaign=widget';
+	private $utm_source = 'utm_source=wordpress&utm_medium=dashboard&utm_campaign=widget';
 
 	public function __construct() {
 		if ( is_admin() ) {
@@ -19,7 +19,7 @@ class Load {
 	public function add_dashboard_widget() {
 		wp_add_dashboard_widget(
 			'wp-dashboard-widget-news',
-			esc_html__( 'QuadLayers News', 'wp-dashboard-widget-news' ),
+			'QuadLayers News',
 			array(
 				$this,
 				'display_dashboard_widget',
@@ -35,7 +35,7 @@ class Load {
 				<div style="margin-top: 11px;float: left;width: 70%;">
 					<?php esc_html_e( 'Hi! We are Quadlayers! We’re a team of international people who have been working in the WordPress sphere for the last ten years.', 'wp-dashboard-widget-news' ); ?>
 					<div style="margin-top: 11px; float: left; width: 70%;">
-					<a href="<?php echo admin_url( 'admin.php?page=' . QLTTF_PREFIX . '_suggestions' ); ?>" target="_blank" class="button button-secondary">
+					<a href="<?php printf( 'https://quadlayers.com/shop/?%s', $this->utm_source ); ?>" target="_blank" class="button button-secondary">
 						<?php esc_html_e( 'More products', 'wp-dashboard-widget-news' ); ?>
 					</a>
 				</div>
@@ -55,7 +55,7 @@ class Load {
 							$link = substr( $link, 1 );
 						}
 
-						$link  = esc_url( strip_tags( $link . '?utm_source=ql_dashboard' ) );
+						$link  = esc_url( strip_tags( $link . '?' . $this->utm_source ) );
 						$title = esc_html( trim( strip_tags( $post['title'] ) ) );
 
 						if ( empty( $title ) ) {
@@ -90,7 +90,7 @@ class Load {
 				<?php esc_html_e( 'Read more like this on our blog', 'wp-dashboard-widget-news' ); ?>
 			</a>
 			<a class="button-primary" href="<?php printf( 'https://quadlayers.com/?%s', $this->utm_source ); ?>" target="_blank">
-				<?php esc_html_e( 'QuadLayers', 'wp-dashboard-widget-news' ); ?>
+				QuadLayers
 			</a>
 		</div>
 		<?php
