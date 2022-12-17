@@ -2,12 +2,10 @@
 
 namespace QuadLayers\WP_Dashboard_Widget_News;
 
-require_once __DIR__ . '/../vendor/autoload.php';
-
 class Load {
 
 	protected static $instance;
-	private $utm_source = 'utm_source=wordpress&utm_medium=dashboard&utm_campaign=widget';
+	private $utm_source = 'utm_source=WordPress&utm_medium=dashboard&utm_campaign=widget';
 
 	public function __construct() {
 		if ( is_admin() ) {
