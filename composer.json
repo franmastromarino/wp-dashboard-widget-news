@@ -8,11 +8,6 @@
 		"Widget"
 	],
 	"type": "jetpack-library",
-	"config": {
-		"platform": {
-			"php": "7.1.0"
-		}
-	},
 	"license": "GPL-3.0",
 	"authors": [
 		{
@@ -21,6 +16,11 @@
 		}
 	],
 	"minimum-stability": "stable",
+	"config": {
+		"platform": {
+			"php": "7.1.0"
+		}
+	},
 	"autoload": {
 		"psr-4": {
 			"QuadLayers\\WP_Dashboard_Widget_News\\": "src/"
@@ -29,5 +29,8 @@
 	},
 	"extra": {
 		"textdomain": "wp-dashboard-widget-news"
+	},
+	"require": {
+		"php": ">=7.1.0"
 	}
 }
