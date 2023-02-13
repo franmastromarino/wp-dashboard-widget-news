@@ -72,7 +72,7 @@ class Load {
 							wp_kses_post( $link ),
 							wp_kses_post( $title ),
 							wp_kses_post( $date ),
-							wp_kses_post( $summary ),
+							wp_kses_post( $summary )
 						);
 					}
 					?>
