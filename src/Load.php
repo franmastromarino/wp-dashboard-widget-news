@@ -1,12 +1,39 @@
 <?php
+/**
+ * QuadLayers WP Dashboard Widget News
+ *
+ * @package   quadlayers/wp-dashboard-widget-news
+ * @author    QuadLayers
+ * @link      https://github.com/quadlayers/wp-dashboard-widget-news
+ * @copyright Copyright (c) 2023
+ * @license   GPL-3.0
+ */
 
 namespace QuadLayers\WP_Dashboard_Widget_News;
 
+/**
+ * Class Load
+ */
 class Load {
 
+	/**
+	 * Instance
+	 *
+	 * @var null
+	 */
 	protected static $instance;
+
+	/**
+	 * UTM source
+	 *
+	 * @var string
+	 */
 	private $utm_source = 'utm_source=WordPress&utm_medium=dashboard&utm_campaign=widget';
 
+
+	/**
+	 * Constructor
+	 */
 	public function __construct() {
 		if ( is_admin() ) {
 			add_action( 'wp_network_dashboard_setup', array( $this, 'add_dashboard_widget' ), -10 );
@@ -14,6 +41,11 @@ class Load {
 		}
 	}
 
+	/**
+	 * Add dashboard widget.
+	 *
+	 * @return void
+	 */
 	public function add_dashboard_widget() {
 		wp_add_dashboard_widget(
 			'wp-dashboard-widget-news',
@@ -25,6 +57,11 @@ class Load {
 		);
 	}
 
+	/**
+	 * Create feed.
+	 *
+	 * @return void
+	 */
 	public function display_dashboard_widget() {
 		$posts = $this->get_feed();
 		?>
@@ -94,6 +131,11 @@ class Load {
 		<?php
 	}
 
+	/**
+	 * Get the feed.
+	 *
+	 * @return array
+	 */
 	public function get_feed() {
 
 		$posts = get_transient( 'quadlayers_news_feed' );
@@ -129,6 +171,11 @@ class Load {
 		return $posts;
 	}
 
+	/**
+	 * Get the instance of the class.
+	 *
+	 * @return self
+	 */
 	public static function instance() {
 		if ( ! isset( self::$instance ) ) {
 			self::$instance = new self();
