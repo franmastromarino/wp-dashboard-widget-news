@@ -3,10 +3,7 @@
  * QuadLayers WP Dashboard Widget News
  *
  * @package   quadlayers/wp-dashboard-widget-news
- * @author    QuadLayers
  * @link      https://github.com/quadlayers/wp-dashboard-widget-news
- * @copyright Copyright (c) 2023
- * @license   GPL-3.0
  */
 
 namespace QuadLayers\WP_Dashboard_Widget_News;
@@ -70,7 +67,7 @@ class Load {
 				<div style="margin-top: 11px;float: left;width: 70%;">
 					<?php esc_html_e( 'Hi! We are Quadlayers! We’re a team of international people who have been working in the WordPress sphere for the last ten years.', 'wp-dashboard-widget-news' ); ?>
 					<div style="margin-top: 11px; float: left; width: 70%;">
-					<a href="<?php printf( 'https://quadlayers.com/shop/?%s', $this->utm_source ); ?>" target="_blank" class="button button-secondary">
+					<a href="<?php printf( 'https://quadlayers.com/shop/?%s', esc_html( $this->utm_source ) ); ?>" target="_blank" class="button button-secondary">
 						<?php esc_html_e( 'More products', 'wp-dashboard-widget-news' ); ?>
 					</a>
 				</div>
@@ -115,16 +112,19 @@ class Load {
 					?>
 					<?php
 				} else {
-					printf( '<li>%s</li>', $posts );
+					printf(
+						'<li>%s</li>',
+						wp_kses_post( $posts )
+					);
 				}
 				?>
 			</ul>
 		</div>
 		<div style="display: flex; justify-content: space-between;align-items: center;margin: 16px -12px 0;padding: 12px 12px 0; border-top: 1px solid #eee;">
-			<a href="<?php printf( 'https://quadlayers.com/blog/?%s', $this->utm_source ); ?>" target="_blank">
+			<a href="<?php printf( 'https://quadlayers.com/blog/?%s', esc_html( $this->utm_source ) ); ?>" target="_blank">
 				<?php esc_html_e( 'Read more like this on our blog', 'wp-dashboard-widget-news' ); ?>
 			</a>
-			<a class="button-primary" href="<?php printf( 'https://quadlayers.com/?%s', $this->utm_source ); ?>" target="_blank">
+			<a class="button-primary" href="<?php printf( 'https://quadlayers.com/?%s', esc_html( $this->utm_source ) ); ?>" target="_blank">
 				QuadLayers
 			</a>
 		</div>
